@@ -39,3 +39,7 @@ verified/centos6_zinst_httpd                       latest              686416c72
 =====================================
 
 ```
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/goody80/docker_build_auto/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
