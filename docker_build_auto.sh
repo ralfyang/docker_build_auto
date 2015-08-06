@@ -3,15 +3,16 @@
 ### Made by ralf.yang@gsshop.com, goody80762@gmail.com
 ### Version 0.4
 
-Docker_repo=`cat /data/z/etc/init.d/docker | grep "^connection" | awk -F '=' '{print $2}' | sed -e 's/"//g' `
 
 ## YOU CAN CHANGE THE COMMAND for WHAT YOU NEED AS BELOW CheckCommand.
+#Docker_repo=`cat /data/z/etc/init.d/docker | grep "^connection" | awk -F '=' '{print $2}' | sed -e 's/"//g' `
+Docker_repo=""
 CheckCommand="ls -lai"
+VerifiedTag="VF"
 
 Output="/tmp/build_auto.list"
 BAR="====================================="
 
-VerifiedTag="VF"
 
 WorkDir="$PWD"
 OutputDir="$WorkDir/Output"
