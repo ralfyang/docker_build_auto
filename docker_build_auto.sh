@@ -1,7 +1,7 @@
 #!/bin/bash
 ### docker image build automation with verification
 ### Made by ralf.yang@gsshop.com, goody80762@gmail.com
-### Version 0.3
+### Version 0.3 
 
 Docker_repo=`cat /data/z/etc/init.d/docker | grep "^connection" | awk -F '=' '{print $2}' | sed -e 's/"//g' `
 
