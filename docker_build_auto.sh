@@ -1,7 +1,7 @@
 #!/bin/bash
 ### docker image build automation with verification
 ### Made by ralf.yang@gsshop.com, goody80762@gmail.com
-### Version 0.3 
+### Version 0.4
 
 Docker_repo=`cat /data/z/etc/init.d/docker | grep "^connection" | awk -F '=' '{print $2}' | sed -e 's/"//g' `
 
@@ -11,7 +11,7 @@ CheckCommand="ls -lai"
 Output="/tmp/build_auto.list"
 BAR="====================================="
 
-VerifiedTag="VFD"
+VerifiedTag="VF"
 
 WorkDir="$PWD"
 OutputDir="$WorkDir/Output"
@@ -49,6 +49,38 @@ read build_num
 ## Select a number for work
 DockerName=`grep "^$build_num" $Output | awk '{print $3}'`
 
+## Checks for changes
+cp ./$DockerName/Dockerfile ./$DockerName/.Dockerfile_bak
+
+	if [[ `(rpm -qa |grep "vim-")` != "" ]];then
+		ViComm=`which vim | tail -1`
+	else
+		ViComm=`which vi | tail -1`
+	fi
+
+$ViComm ./$DockerName/Dockerfile
+	if [[ `(diff ./$DockerName/Dockerfile ./$DockerName/.Dockerfile_bak)` = "" ]];then
+		echo "$BAR"
+		echo " Nothing has been changed!! processor will be stop"
+		rm -f ./$DockerName/.Dockerfile_bak
+		read
+		exit 0
+	fi
+rm -f ./$DockerName/.Dockerfile_bak
+
+
+echo "$BAR"
+echo " If you don't go anymore, plese insert a [ n ] key or break"
+read keystop
+	if [[ $keystop = "n" ]];then
+		echo "$BAR"
+		echo " Build processor has been stopped !"
+		read
+		exit 0
+	fi
+
+
+##
 mkdir $OutputDir -p 2> /dev/null
 
 DockerNameOut="$OutputDir/$DockerName.out"
