@@ -193,4 +193,3 @@ $Comm rmi -f $VerifiedTag/$DockerName:$Tags
 $Comm rmi -f $Docker_repo/$VerifiedTag/$DockerName:latest
 
 cd $WorkDir/../; git pull;git add *;git commit -m "update the Available list for - $Docker_repo/$VerifiedTag/$DockerName:$Tags" ; git push
-
