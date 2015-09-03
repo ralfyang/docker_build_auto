@@ -46,6 +46,10 @@ clear
 cat $Output
 echo "Please insert a number for build:"
 read build_num
+	if [ -e $build_num ];then
+		echo "Nothing selected"
+		exit 0;
+	fi
 
 ## Select a number for work
 DockerName=`grep "^$build_num" $Output | awk '{print $3}'`
