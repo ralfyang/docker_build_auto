@@ -1,7 +1,7 @@
 #!/bin/bash
 ### docker image build automation with verification
 ### Made by ralf.yang@gsshop.com, goody80762@gmail.com
-### Version 0.4
+### Version 0.5
 
 
 ## YOU CAN CHANGE THE COMMAND for WHAT YOU NEED AS BELOW CheckCommand.
