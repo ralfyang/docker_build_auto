@@ -95,7 +95,9 @@ DockerNameOut="$OutputDir/$DockerName.out"
 DockerUplog="$OutputDir/$DockerName.log"
 ErrorOut="buildauto.err"
 EnablePortArry=(`cat ./$DockerName/Dockerfile |grep EXPOSE | sed -e 's/EXPOSE //g'`)
-Tags=`cat ./$DockerName/Dockerfile |grep "^#Tags=" | awk -F'=' '{print $2}'`
+
+## Find out the version by 'LABEL version=x.x'
+Tags=`grep " version=" ./$DockerName/Dockerfile | awk -F '=' '{print $2}' | sed 's/"//g'`
 
 
 ## Check build success
