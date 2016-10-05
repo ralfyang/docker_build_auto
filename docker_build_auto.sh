@@ -16,8 +16,15 @@ BAR="====================================="
 
 WorkDir="$PWD"
 OutputDir="$WorkDir/Output"
+	if [[ `(which rpm)` != "" ]];then
+		sudo_pkg_check=`rpm -qa  2> /dev/null |grep "^sudo"`
+		InstM="rpm -qa |grep 'vim-'"
+	elif [[ `(which apt-get)` != "" ]];then
+		sudo_pkg_check=`dpkg -l  2> /dev/null |grep "^sudo"`
+		InstM="dpkg -l |grep 'vim-'"
+	fi
+
 ## Please modify under variable for the private repository if you have.
-sudo_pkg_check=`rpm -qa  2> /dev/null |grep "^sudo"`
 	if [[ $sudo_pkg_check = "" ]]; then
 		Comm="docker"
 	else
@@ -53,7 +60,7 @@ DockerName=`grep "^$build_num" $Output | awk '{print $3}'`
 ## Checks for changes
 cp ./$DockerName/Dockerfile ./$DockerName/.Dockerfile_bak
 
-	if [[ `(rpm -qa |grep "vim-")` != "" ]];then
+	if [[ $InstM != "" ]];then
 		ViComm=`which vim | tail -1`
 	else
 		ViComm=`which vi | tail -1`
