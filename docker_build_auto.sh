@@ -55,7 +55,7 @@ echo "Please insert a number for build:"
 read build_num
 
 ## Select a number for work
-DockerName=`grep "^$build_num" $Output | awk '{print $3}'`
+DockerName=`grep "^$build_num " $Output | awk '{print $3}'`
 
 ## Checks for changes
 cp ./$DockerName/Dockerfile ./$DockerName/.Dockerfile_bak
