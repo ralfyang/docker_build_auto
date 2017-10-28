@@ -1,6 +1,6 @@
 #!/bin/bash
 ### docker image build automation with verification
-### Made by ralf.yang@gsshop.com, goody80762@gmail.com
+### Made by ralfyang@code-post.com, goody80762@gmail.com
 ### Version 0.5
 
 
